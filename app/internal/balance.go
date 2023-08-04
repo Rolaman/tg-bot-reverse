@@ -33,6 +33,16 @@ func NewBalanceClient(
 	}
 }
 
+func FromDynamoDb(
+	table string,
+	db *dynamodb.DynamoDB,
+) *BalanceClient {
+	return &BalanceClient{
+		table: table,
+		db:    db,
+	}
+}
+
 func initDb(region string) *dynamodb.DynamoDB {
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region: aws.String(region)},

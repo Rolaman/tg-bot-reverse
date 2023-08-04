@@ -22,9 +22,14 @@ var (
 func main() {
 	table := os.Getenv("TABLE_NAME")
 	region := os.Getenv("REGION")
+	token := os.Getenv("TG_BOT_TOKEN")
+	run(table, region, token)
+}
+
+func run(table string, region string, token string) {
 	balanceClient := internal.NewBalanceClient(table, region)
 	pref := tele.Settings{
-		Token:       os.Getenv("TG_BOT_TOKEN"),
+		Token:       token,
 		Synchronous: true,
 		Verbose:     true,
 	}
